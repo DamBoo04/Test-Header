@@ -1,6 +1,6 @@
 <template>
   <header class="w-full font-sans bg-transparent">
-    <!-- ================= DESKTOP HEADER ================= -->
+    <!--  DESKTOP HEADER  -->
     <div class="hidden md:flex flex-1 h-auto mx-auto w-full">
       <!-- LOGO -->
       <div class="bg-[#f3d26b] flex overflow-hidden flex-shrink-0">
@@ -59,21 +59,21 @@
             </div>
 
             <!-- REGISTER & LOGIN -->
-            <template v-if="!isLoggedIn">
+            <div v-if="!isLoggedIn">
               <div class="lg:ml-4 m-1 flex gap-2">
                 <button
-                  class="bg-white px-2 py-1 lg:px-4 lg:py-1.5 text-xs md:text-base rounded-full font-bold hover:bg-gray-100 transition"
+                  class="bg-white px-1 py-1 lg:px-4 lg:py-1.5 text-xs lg:text-base rounded-full font-bold hover:bg-gray-100 transition"
                 >
                   ĐĂNG KÝ
                 </button>
                 <button
                   @click="login"
-                  class="text-[#e5c175] px-2 py-1 lg:px-4 lg:py-1.5 text-xs md:text-sm rounded-full font-bold bg-black hover:text-yellow-400 transition"
+                  class="text-[#e5c175] px-1 py-1 lg:px-4 lg:py-1.5 text-xs lg:text-sm rounded-full font-bold bg-black hover:text-yellow-400 transition"
                 >
                   ĐĂNG NHẬP
                 </button>
               </div>
-            </template>
+            </div>
           </nav>
 
           <!-- USER PANEL -->
@@ -93,7 +93,7 @@
 
               <!-- USER CONTROLS -->
               <div
-                class="relative group flex items-center gap-2 bg-gradient-to-b from-gray-700 to-black rounded-full px- lg:px-3"
+                class="relative group flex items-center gap-2 bg-gradient-to-b from-gray-700 to-black rounded-full"
               >
                 <!-- COIN -->
                 <div
@@ -130,14 +130,12 @@
                         <button
                           v-for="item in coinOptions"
                           :key="item.id"
-                          @click="handleAddCoin(item.value)"
                           class="flex w-full items-center gap-2 p-1 lg:px-3 lg:py-2 rounded-full bg-white/20 backdrop-blur-lg text-white transition text-sm md:text-base"
                         >
                           <img :src="item.icon" class="w-4 lg:w-5 h-4 lg:h-5" />
                           <span>{{ item.value }}</span>
                         </button>
                         <button
-                          @click="handleAddMore"
                           class="flex items-center gap-2 lg:px-3 lg:py-2 text-white text-xs lg:text-sm"
                         >
                           <span
@@ -232,27 +230,25 @@
         </div>
 
         <!-- SUB NAV + LANGUAGE/DARK TOGGLE -->
-        <div
-          class="bg-black px-2 sm:px-4 lg:px-6 py-2 flex flex-wrap items-center gap-3"
-        >
-          <!-- SUB NAV (START / LEFT) -->
-          <div
-            class="flex items-center space-x-3 overflow-x-auto no-scrollbar flex-1"
-          >
+        <div class="bg-black py-2 flex items-center gap-3">
+          <!-- SUB NAV -->
+          <div class="flex items-center space-x-3 overflow-x-auto no-scrollbar">
             <div
               v-for="sub in subNav"
               :key="sub.id"
               class="flex-shrink-0 flex items-center space-x-2 text-[#e5c175] px-2 lg:px-3 py-1 rounded-full hover:text-white hover:bg-white/10 cursor-pointer transition"
             >
               <img :src="getIcon(sub.icon)" class="w-4 h-4 lg:w-5 lg:h-5" />
-              <span class="text-[12px] lg:text-base font-medium truncate">
+              <span
+                class="text-[12px] md:text-sm lg:text-base font-medium truncate"
+              >
                 {{ sub.label }}
               </span>
             </div>
           </div>
 
-          <!-- LANGUAGE + DARK MODE TOGGLE -->
-          <div class="flex items-center gap-2 sm:gap-4">
+          <!-- LANGUAGE + DARK MODE (CONTINUES FROM SUB NAV) -->
+          <div class="flex items-center gap-2 sm:gap-4 flex-shrink-0">
             <!-- Language Switch -->
             <button
               @click="toggleLanguage"
@@ -260,13 +256,13 @@
             >
               <img
                 :src="
-                  language === 'English'
-                    ? getIcon('eng.png')
-                    : getIcon('vn.png')
+                  language === 'EN' ? getIcon('eng.png') : getIcon('vn.png')
                 "
-                class="w-5 lg:w-6 h-5 lg:h-6"
+                class="w-5 h-5 lg:w-6 lg:h-6"
               />
-              {{ language }}
+              <span class="">
+                {{ language === "EN" ? "English" : "Tiếng Việt" }}
+              </span>
             </button>
 
             <!-- Dark Mode Toggle -->
@@ -275,12 +271,12 @@
               class="relative inline-flex h-8 w-14 items-center rounded-full border border-[#e5c175]"
             >
               <span
-                class="inline-flex h-6 w-6 rounded-full transition-transform"
+                class="inline-flex h-6 w-6 rounded-full transition-transform duration-300"
                 :class="isDark ? 'translate-x-7' : 'translate-x-1'"
               >
                 <img
                   :src="isDark ? getIcon('dark.png') : getIcon('light.png')"
-                  class="w-5 sm:w-6 h-5 sm:h-6"
+                  class="w-5 h-5 sm:w-6 sm:h-6"
                 />
               </span>
             </button>
@@ -289,19 +285,17 @@
       </div>
     </div>
     <!-- MOBILE HEADER -->
-    <!-- ================= MOBILE HEADER ================= -->
     <div class="md:hidden w-full flex items-stretch h-auto">
-      <!-- ===== LEFT: FULL HEIGHT LOGO ===== -->
+      <!--  LEFT: FULL HEIGHT LOGO -->
       <div class="bg-[#f3d26b] flex overflow-hidden flex-shrink-0">
         <div
           class="bg-black flex flex-col justify-start px-6 py-4 min-w-[200px] rounded-tr-[60px]"
         >
-          <!-- Logo near the top-right curve -->
           <span class="text-white text-3xl font-bold mt-2">LOGO</span>
         </div>
       </div>
 
-      <!-- ===== RIGHT: TOP + BOTTOM BARS ===== -->
+      <!-- RIGHT: TOP + BOTTOM BARS -->
       <div class="flex-1 flex flex-col">
         <!-- TOP BAR -->
         <div
@@ -332,7 +326,7 @@
           <!-- ICONS -->
           <div class="flex items-center gap-6">
             <button
-              v-for="item in mobileIcons"
+              v-for="item in mobileicons"
               :key="item.id"
               class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-white/10 transition"
             >
@@ -358,7 +352,7 @@
         </div>
       </div>
 
-      <!-- ===== MOBILE MENU OVERLAY ===== -->
+      <!-- MOBILE MENU OVERLAY -->
       <Transition name="fade">
         <div
           v-if="isMobileMenuOpen"
@@ -367,7 +361,7 @@
         />
       </Transition>
 
-      <!-- ===== MOBILE MENU PANEL ===== -->
+      <!-- MOBILE MENU PANEL -->
       <Transition name="slide-right">
         <div
           v-if="isMobileMenuOpen"
@@ -402,9 +396,6 @@
       </Transition>
     </div>
   </header>
-  <div
-    class="md:bg-red-200 lg:bg-blue-200 xl:bg-green-200 2xl:bg-purple-200 h-48 w-full"
-  ></div>
 </template>
 
 <script setup lang="ts">
@@ -425,7 +416,7 @@ const mainNav = computed(() => navigation.value?.mainNav || []);
 const subNav = computed(() => navigation.value?.subNav || []);
 const coinOptions = computed(() => navigation.value?.coinOptions || []);
 const useracc = computed(() => navigation.value?.useracc || []);
-
+const mobileicons = computed(() => navigation.value?.mobileicons || []);
 /* ---------------- NAV DATA ---------------- */
 const { data: navigation } = await useFetch("/api/navigation", {
   server: true,
@@ -435,32 +426,23 @@ const { data: navigation } = await useFetch("/api/navigation", {
     subNav: [],
     useracc: [],
     coinOptions: [],
+    mobileicons: [],
   }),
-});
-const mobileIcons = computed(() => {
-  return mainNav.value?.[0]?.dropdown?.slice(0, 3) || [];
 });
 
 /* ---------------- HELPERS ---------------- */
 const getIcon = (name: string) => `/icons/${name}`;
 
 /* ---------------- ACTIONS ---------------- */
-const toggleLanguage = () =>
-  (language.value = language.value === "English" ? "TIẾNG VIỆT" : "English  ");
+const toggleLanguage = () => {
+  language.value = language.value === "EN" ? "VN" : "EN";
+};
 const toggleDark = () => (isDark.value = !isDark.value);
 const login = () => (isLoggedIn.value = true);
 
 const toggleAvatarDropdown = () =>
   (isAvatarDropdownOpen.value = !isAvatarDropdownOpen.value);
 const toggleCoinDropdown = () => (isCoinOpen.value = !isCoinOpen.value);
-const handleAddCoin = (value: number) => {
-  coin.value += value;
-  isCoinOpen.value = false;
-};
-const handleAddMore = () => {
-  console.log("Add more coins");
-  isCoinOpen.value = false;
-};
 const goTo = (href: string) => (window.location.href = href);
 
 /* ---------------- THEME PERSIST ---------------- */

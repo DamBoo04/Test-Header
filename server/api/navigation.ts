@@ -1,38 +1,3 @@
-// export default defineEventHandler((event) => {
-//   return {
-//     message: "Hello Worldaaaa",
-//   };
-// });
-// export default defineEventHandler(() => {
-//   return {
-//     mainNav: [
-//       { label: "LỊCH TRỰC TIẾP" },
-//       { label: "LỊCH THI ĐẤU" },
-//       { label: "TỶ LỆ KÈO" },
-//       { label: "KẾT QUẢ" },
-//       { label: "PHÒNG CHAT" },
-//       { label: "TIN TỨC" },
-//     ],
-//     subNav: [
-//       {
-//         label: "Bóng đá",
-//         icon: "/icons/football.svg",
-//       },
-//       {
-//         label: "Bóng rổ",
-//         icon: "/icons/basketball.svg",
-//       },
-//       {
-//         label: "E-Sports",
-//         icon: "/icons/esports.svg",
-//       },
-//       {
-//         label: "Casino",
-//         icon: "/icons/casino.svg",
-//       },
-//     ],
-//   };
-// });
 export default defineEventHandler(() => {
   return {
     mainNav: [
@@ -186,13 +151,18 @@ export default defineEventHandler(() => {
       },
     ],
     userMenu: [
-  { title: 'Profile', href: '/profile', icon: '/icons/user.png' },
-  { title: 'Settings', href: '/settings', icon: '/icons/settings.png' },
-  { title: 'Logout', href: '/logout', icon: '/icons/logout.png' },
-],
+      { title: "Profile", href: "/profile", icon: "/icons/user.png" },
+      { title: "Settings", href: "/settings", icon: "/icons/settings.png" },
+      { title: "Logout", href: "/logout", icon: "/icons/logout.png" },
+    ],
     coinOptions: [
-      { id: 1, value: 20.0, icon: "/icons/silver-coin.png" },
-      { id: 2, value: 20.0, icon: "/icons/kg.png" },
+      { id: 1, value: 20000, icon: "/icons/silver-coin.png" },
+      { id: 2, value: 20000, icon: "/icons/kg.png" },
+    ],
+    mobileicons: [
+      { id: 1, img: "ani_soccer.gif", href: "/" },
+      { id: 2, img: "ani_basketball2.gif", href: "/" },
+      { id: 2, img: "ani_gamepad.gif", href: "/" },
     ],
   };
 });
